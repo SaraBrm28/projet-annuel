@@ -1,0 +1,26 @@
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.026);
+  border-radius: 30px;
+  
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.091);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 55, 255, 0.153);
+  
+}
+.glass-morphism-two{
+  background: rgba(255, 255, 255, 0.068);
+  border-radius: 10px;
+  border:1px solid;
+  border-top-color:darkgrey;
+  box-shadow: 0 4px 30px rgba(114, 43, 196, 0.829);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-right-color:darkgrey;
+  
+}
+
+body, button, a {
+  cursor: none; 
+}
+
