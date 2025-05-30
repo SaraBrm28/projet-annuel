@@ -1,19 +1,41 @@
 .glass-morphism {
-  background: rgba(255, 255, 255, 0.026);
+  background: rgba(8, 8, 8, 0.983);
   border-radius: 30px;
   
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.091);
+  box-shadow: 0 4px 30px rgba(133, 1, 67, 0.686);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(0, 55, 255, 0.153);
   
 }
-.glass-morphism-two{
-  background: rgba(255, 255, 255, 0.068);
+.glass-morphism-four{
+  background: rgba(114, 102, 102, 0.068);
   border-radius: 10px;
   border:1px solid;
   border-top-color:darkgrey;
-  box-shadow: 0 4px 30px rgba(114, 43, 196, 0.829);
+  box-shadow: 0 2px 20px rgba(66, 141, 239, 0.829);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-right-color:darkgrey;
+  
+}
+.glass-morphism-two{
+  background: rgba(119, 107, 107, 0.068);
+  border-radius: 10px;
+  border:1px solid;
+  border-top-color:darkgrey;
+  box-shadow: 0 4px 20px rgba(114, 43, 196, 0.829);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-right-color:darkgrey;
+  
+}
+.glass-morphism-three{
+  background: rgba(114, 102, 102, 0.068);
+  border-radius: 10px;
+  border:1px solid;
+  border-top-color:darkgrey;
+  box-shadow: 0 4px 20px rgba(238, 115, 246, 0.96);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border-right-color:darkgrey;

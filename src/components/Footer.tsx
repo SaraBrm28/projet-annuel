@@ -1,8 +1,9 @@
 import React from 'react'
 import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Logoo from '../assets/logoo.png'
-
+import { useNavigate} from "react-router-dom";
 const Footer = () => {
+   const navigate = useNavigate();
   return (
     <footer className="  pt-32  bg-black text-white py-6  cursor-none">
       <div className="container mx-auto text-center">
@@ -56,7 +57,7 @@ const Footer = () => {
              </div>
   <div className=" relative group hoverElement cursor-none">
                 <div className="   group:hover:opacity-100  transition duration:200 absolute inset-0 bg-gradient-to-r from-third  to-primary rounded-full blur"> </div>
-             <button  className=" cursor-none  relative leading-none text-white bg-black px-4 py-2  rounded-full hover:scale-105 duration-200"> <FaLinkedin size={20}/> </button>
+             <button onClick={()=> navigate("/Quiz")} className=" cursor-none  relative leading-none text-white bg-black px-4 py-2  rounded-full hover:scale-105 duration-200"> <FaLinkedin size={20}/> </button>
              </div>
 </div>
 

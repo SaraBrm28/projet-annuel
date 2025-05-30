@@ -34,7 +34,7 @@ const Envie = () => {
        <div className="  z-50 relative group">
                        <div className="   group:hover:opacity-100  transition duration:200 absolute inset-0 bg-gradient-to-r from-third  to-primary rounded-full blur"> </div>
                      
-                    <Button variant='primary' onClick={()=> navigate("/Inscription")}> Créer mon quiz  </Button>
+                       <Button variant='primary' onClick={() => navigate("/creer-quiz")}>Créer mon quiz</Button>
                  
                     </div>
                     
