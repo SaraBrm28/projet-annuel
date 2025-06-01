@@ -66,74 +66,81 @@ const AdminQuiz = () => {
 
   return (
     <div className="min-h-screen pt-28 px-6 text-white">
-      <h1 className="text-3xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-        Gestion des Quiz
+      <h1 className="text-3xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-third  via-secondary to-primary">
+        Gestion des Quiz & Catégories
       </h1>
 
-      <div className="mb-10 bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/20">
-        <input
-          type="text"
-          placeholder="🔍 Rechercher un quiz..."
-          className="p-3 mb-6 w-full max-w-md rounded-xl bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
-          value={filtreQuiz}
-          onChange={e => setFiltreQuiz(e.target.value)}
-        />
-        <ul className="space-y-3">
-          {quizFiltres.map(q => (
-            <li
-              key={q.id_quiz}
-              className="bg-white/10 p-4 rounded-xl flex justify-between items-center border border-white/10"
-            >
-              <div>
-                <p className="text-lg font-semibold">{q.titre}</p>
-                <p className="text-sm text-gray-300 italic">{q.categorie}</p>
-              </div>
-              <div className="space-x-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Colonne gauche : Quiz */}
+        <div className="bg-white/5 backdrop-blur-md p-6 glass-morphism-two rounded-2xl border border-white/20">
+          <h2 className="text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white text-center">
+            Quiz
+          </h2>
+          <input
+            type="text"
+            placeholder="🔍 Rechercher un quiz..."
+            className="p-3 mb-6 w-full rounded-xl bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+            value={filtreQuiz}
+            onChange={e => setFiltreQuiz(e.target.value)}
+          />
+          <ul className="space-y-3">
+            {quizFiltres.map(q => (
+              <li
+                key={q.id_quiz}
+                className="bg-white/10 p-4 rounded-xl flex justify-between items-center border border-white/10"
+              >
+                <div>
+                  <p className="text-lg font-semibold">{q.titre}</p>
+                  <p className="text-sm text-gray-300 italic">{q.categorie}</p>
+                </div>
+                <div className="space-x-3">
+                  <button
+                    onClick={() => navigate(`/admin/modifier/${q.id_quiz}`)}
+                    className="text-primary hover:underline text-sm font-medium"
+                  >
+                    Modifier
+                  </button>
+                  <button
+                    onClick={() => supprimerQuiz(q.id_quiz)}
+                    className="text-red-400 hover:underline text-sm font-medium"
+                  >
+                    Supprimer
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Colonne droite : Catégories */}
+        <div className="bg-white/5 backdrop-blur-md p-6 glass-morphism-two rounded-2xl border border-white/20">
+          <h2 className="text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white text-center">
+            Catégories
+          </h2>
+          <input
+            type="text"
+            placeholder="🔍 Rechercher une catégorie..."
+            className="p-3 mb-6 w-full rounded-xl bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary"
+            value={filtreCategorie}
+            onChange={e => setFiltreCategorie(e.target.value)}
+          />
+          <ul className="space-y-3">
+            {categorieFiltres.map(c => (
+              <li
+                key={c.id_categorie}
+                className="bg-white/10 p-4 rounded-xl flex justify-between items-center border border-white/10"
+              >
+                <span className="text-white">{c.nom}</span>
                 <button
-                  onClick={() => navigate(`/admin/modifier/${q.id_quiz}`)}
-                  className="text-yellow-400 hover:underline text-sm font-medium"
-                >
-                  Modifier
-                </button>
-                <button
-                  onClick={() => supprimerQuiz(q.id_quiz)}
+                  onClick={() => supprimerCategorie(c.id_categorie)}
                   className="text-red-400 hover:underline text-sm font-medium"
                 >
                   Supprimer
                 </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <h2 className="text-2xl text-center font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-        Gestion des Catégories
-      </h2>
-      <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/20">
-        <input
-          type="text"
-          placeholder="🔍 Rechercher une catégorie..."
-          className="p-3 mb-6 w-full max-w-md rounded-xl bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary"
-          value={filtreCategorie}
-          onChange={e => setFiltreCategorie(e.target.value)}
-        />
-        <ul className="space-y-3">
-          {categorieFiltres.map(c => (
-            <li
-              key={c.id_categorie}
-              className="bg-white/10 p-4 rounded-xl flex justify-between items-center border border-white/10"
-            >
-              <span className="text-white">{c.nom}</span>
-              <button
-                onClick={() => supprimerCategorie(c.id_categorie)}
-                className="text-red-400 hover:underline text-sm font-medium"
-              >
-                Supprimer
-              </button>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

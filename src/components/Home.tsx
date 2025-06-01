@@ -7,6 +7,7 @@ import { NeonGradientCard } from "./magicui/neon-gradient-card";
 import Envie from "./Envie";
 import Certificat from "./Certificat";
 import { Neon } from "./magicui/neon";
+import { BorderBeam } from "./magicui/border-beam";
 
 interface Quiz {
   id_quiz: number;
@@ -118,34 +119,59 @@ const Home = () => {
         Nos quiz les plus populaires
       </h1>
 
-      <div className="h-screen w-full flex items-center justify-center">
-        <div className="grid h-full w-[1000px] grid-cols-5 grid-rows-3 gap-6 p-10">
-          {popularQuizzes[0] && (
-            <div
-              className="col-span-3 row-span-1"
-              onClick={() => navigate(`/quiz/${popularQuizzes[0].id_quiz}`)}
-            >
-              {renderPopularCard(popularQuizzes[0])}
-            </div>
-          )}
-          {popularQuizzes[1] && (
-            <div
-              className="col-span-2 row-span-1"
-              onClick={() => navigate(`/quiz/${popularQuizzes[1].id_quiz}`)}
-            >
-              {renderPopularCard(popularQuizzes[1])}
-            </div>
-          )}
-          {popularQuizzes[2] && (
-            <div
-              className="col-start-2 col-span-3 row-span-1"
-              onClick={() => navigate(`/quiz/${popularQuizzes[2].id_quiz}`)}
-            >
-              {renderPopularCard(popularQuizzes[2])}
-            </div>
-          )}
+      <div className="min-h-screen w-full flex items-center justify-center bg-black">
+  <div className="grid h-full w-[1000px] grid-cols-5 grid-rows-3 gap-6 p-10">
+    {popularQuizzes[0] && (
+      <div
+        className="col-span-3 row-span-1 cursor-pointer transition-transform hover:scale-[1.02]"
+        onClick={() => navigate(`/quiz/${popularQuizzes[0].id_quiz}`)}
+      >
+        <div className="bg-gradient-to-br from-purple-700 to-indigo-800 rounded-2xl p-6 shadow-lg">
+          <h2 className="text-2xl font-bold text-white mb-2">{popularQuizzes[0].titre}</h2>
+          <p className="text-sm text-white/80">{popularQuizzes[0].description}</p>
+          <div className="mt-4 text-sm flex justify-between text-white/90">
+            <span className="italic">Niveau : {popularQuizzes[0].niveau}</span>
+            <span>Temps : {popularQuizzes[0].temps_limite} min</span>
+          </div>
         </div>
       </div>
+    )}
+
+    {popularQuizzes[1] && (
+      <div
+        className="col-span-2 row-span-1 cursor-pointer transition-transform hover:scale-[1.02]"
+        onClick={() => navigate(`/quiz/${popularQuizzes[1].id_quiz}`)}
+      >
+        <div className="bg-gradient-to-br from-pink-600 to-fuchsia-700 rounded-2xl p-6 shadow-lg">
+          <h2 className="text-xl font-semibold text-white mb-2">{popularQuizzes[1].titre}</h2>
+          <p className="text-sm text-white/80">{popularQuizzes[1].description}</p>
+          <div className="mt-4 text-sm flex justify-between text-white/90">
+            <span className="italic">Niveau : {popularQuizzes[1].niveau}</span>
+            <span>Temps : {popularQuizzes[1].temps_limite} min</span>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {popularQuizzes[2] && (
+      <div
+        className="col-start-2 col-span-3 row-span-1 cursor-pointer transition-transform hover:scale-[1.02]"
+        onClick={() => navigate(`/quiz/${popularQuizzes[2].id_quiz}`)}
+      >
+        <div className="bg-gradient-to-br from-cyan-600 to-sky-700 rounded-2xl p-6 shadow-lg">
+          <h2 className="text-2xl font-bold text-white mb-2">{popularQuizzes[2].titre}</h2>
+          <p className="text-sm text-white/80">{popularQuizzes[2].description}</p>
+          <div className="mt-4 text-sm flex justify-between text-white/90">
+            <span className="italic">Niveau : {popularQuizzes[2].niveau}</span>
+            <span>Temps : {popularQuizzes[2].temps_limite} min</span>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
+
 
       <div className="flex flex-row justify-between items-center gap-6 w-3/4 mt-32">
         <Neon><Envie /></Neon>

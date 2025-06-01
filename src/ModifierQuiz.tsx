@@ -20,7 +20,6 @@ const ModifierQuiz = () => {
   const [nouvellesReponses, setNouvellesReponses] = useState<string[]>(['', '', '', '']);
   const [bonneReponseIndex, setBonneReponseIndex] = useState<number>(0);
 
-  // Pour la modale de modification
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reponsesAModifier, setReponsesAModifier] = useState<Reponse[]>([]);
   const [questionAModifier, setQuestionAModifier] = useState<number | null>(null);
@@ -30,17 +29,10 @@ const ModifierQuiz = () => {
     fetch(`http://localhost/quizverse/api/admin_get_quiz_questions.php?id_quiz=${id}`)
       .then(res => res.json())
       .then(data => {
-        if (Array.isArray(data)) {
-          setQuestions(data);
-        } else {
-          console.error("Données reçues non valides :", data);
-          setQuestions([]);
-        }
+        if (Array.isArray(data)) setQuestions(data);
+        else setQuestions([]);
       })
-      .catch(err => {
-        console.error("Erreur de chargement des questions :", err);
-        setQuestions([]);
-      });
+      .catch(() => setQuestions([]));
   }, [id]);
 
   const handleAjouterQuestion = async () => {
@@ -53,42 +45,27 @@ const ModifierQuiz = () => {
       }))
     };
 
-    try {
-      const res = await fetch('http://localhost/quizverse/api/admin_ajouter_question.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+    const res = await fetch('http://localhost/quizverse/api/admin_ajouter_question.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-      const data = await res.json();
-      if (data.success) {
-        window.location.reload();
-      } else {
-        alert(data.error || "Erreur lors de l'ajout de la question");
-      }
-    } catch (error) {
-      console.error("Erreur réseau :", error);
-      alert("Erreur serveur lors de l'ajout.");
-    }
+    const data = await res.json();
+    if (data.success) window.location.reload();
+    else alert(data.error || "Erreur lors de l'ajout");
   };
 
   const handleSupprimerQuestion = async (id_question: number) => {
-    try {
-      const res = await fetch('http://localhost/quizverse/api/admin_supprimer_question.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id_question })
-      });
+    const res = await fetch('http://localhost/quizverse/api/admin_supprimer_question.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_question })
+    });
 
-      const data = await res.json();
-      if (data.success) {
-        setQuestions(questions.filter(q => q.id_question !== id_question));
-      } else {
-        alert(data.error || "Erreur lors de la suppression");
-      }
-    } catch (error) {
-      console.error("Erreur suppression :", error);
-    }
+    const data = await res.json();
+    if (data.success) setQuestions(questions.filter(q => q.id_question !== id_question));
+    else alert(data.error || "Erreur lors de la suppression");
   };
 
   const handleModifierReponses = (id_question: number, anciennesReponses: Reponse[]) => {
@@ -125,83 +102,90 @@ const ModifierQuiz = () => {
   };
 
   return (
-    <div className="pt-28 px-6 text-white">
-      <h1 className="text-3xl font-bold mb-6">Modifier le quiz #{id}</h1>
+    <div className="pt-28 pl-16 pr-16 px-6 text-white">
+      <h1 className="text-3xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+        Modifier le Quiz #{id}
+      </h1>
 
-      <h2 className="text-xl font-semibold mb-4">Ajouter une nouvelle question</h2>
-      <input
-        type="text"
-        placeholder="Enoncé"
-        className="w-full mb-2 p-2 bg-white/10 border border-white/20 rounded"
-        value={enonce}
-        onChange={e => setEnonce(e.target.value)}
-      />
-      {nouvellesReponses.map((r, i) => (
-        <div key={i} className="mb-2">
-          <input
-            type="text"
-            value={r}
-            placeholder={`Réponse ${i + 1}`}
-            onChange={e => {
-              const copy = [...nouvellesReponses];
-              copy[i] = e.target.value;
-              setNouvellesReponses(copy);
-            }}
-            className="p-2 rounded bg-white/10 border border-white/20 w-full"
-          />
-          <label className="ml-2">
+      <section className="mb-10 bg-white/5 p-6 rounded-2xl border border-white/20">
+        <h2 className="text-xl font-semibold mb-4 text-white">➕ Ajouter une nouvelle question</h2>
+        <input
+          type="text"
+          placeholder="Enoncé de la question"
+          className="w-full mb-4 p-3 rounded-xl bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary"
+          value={enonce}
+          onChange={e => setEnonce(e.target.value)}
+        />
+        {nouvellesReponses.map((r, i) => (
+          <div key={i} className="mb-3 flex items-center gap-3">
             <input
-              type="radio"
-              checked={bonneReponseIndex === i}
-              onChange={() => setBonneReponseIndex(i)}
-            /> Bonne réponse
-          </label>
-        </div>
-      ))}
-      <button
-        onClick={handleAjouterQuestion}
-        className="mt-4 bg-blue-500 px-4 py-2 rounded"
-      >
-        Ajouter la question
-      </button>
-
-      <h2 className="text-xl font-semibold mt-10 mb-4">Questions existantes</h2>
-      <ul className="space-y-4">
-        {questions.map(q => (
-          <li key={q.id_question} className="bg-white/10 p-4 rounded">
-            <p className="font-semibold mb-2">{q.enonce}</p>
-            <ul className="ml-4 mb-2 list-disc">
-              {q.reponses.map(r => (
-                <li key={r.id_reponse} className={r.est_correcte ? "text-green-400" : ""}>
-                  {r.texte}
-                </li>
-              ))}
-            </ul>
-            <div className="flex gap-4">
-              <button
-                onClick={() => handleSupprimerQuestion(q.id_question)}
-                className="text-red-400 hover:underline"
-              >
-                Supprimer
-              </button>
-              <button
-                onClick={() => handleModifierReponses(q.id_question, q.reponses)}
-                className="text-yellow-400 hover:underline"
-              >
-                Modifier les réponses
-              </button>
-            </div>
-          </li>
+              type="text"
+              value={r}
+              placeholder={`Réponse ${i + 1}`}
+              onChange={e => {
+                const copy = [...nouvellesReponses];
+                copy[i] = e.target.value;
+                setNouvellesReponses(copy);
+              }}
+              className="flex-1 p-2 rounded-lg bg-white/10 border border-white/20"
+            />
+            <label className="text-sm text-gray-300">
+              <input
+                type="radio"
+                checked={bonneReponseIndex === i}
+                onChange={() => setBonneReponseIndex(i)}
+                className="mr-1"
+              />
+              Bonne réponse
+            </label>
+          </div>
         ))}
-      </ul>
+        <button
+          onClick={handleAjouterQuestion}
+          className="mt-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold px-6 py-2 rounded-xl hover:bg-primary/80 transition"
+        >
+          ➕ Ajouter la question
+        </button>
+      </section>
 
-      {/* Modale de modification */}
+      <section className="mb-20">
+        <h2 className="text-3xl font-semibold mb-6 text-center text-secondary">📋 Questions existantes</h2>
+        <ul className="space-y-4">
+          {questions.map(q => (
+            <li key={q.id_question} className="bg-white/5 p-5 rounded-xl border border-white/10">
+              <p className="font-semibold mb-2 text-lg">{q.enonce}</p>
+              <ul className="ml-4 mb-2 list-disc space-y-1">
+                {q.reponses.map(r => (
+                  <li key={r.id_reponse} className={r.est_correcte ? "text-green-400 font-medium" : ""}>
+                    {r.texte}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex gap-4 mt-3">
+                <button
+                  onClick={() => handleSupprimerQuestion(q.id_question)}
+                  className="text-red-400 hover:underline text-sm"
+                >
+                  ❌ Supprimer
+                </button>
+                <button
+                  onClick={() => handleModifierReponses(q.id_question, q.reponses)}
+                  className="text-slate-300 hover:underline text-sm"
+                >
+                  ✏️ Modifier les réponses
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-white text-black rounded-lg p-6 w-[90%] max-w-md">
-            <h3 className="text-xl font-bold mb-4">Modifier les réponses</h3>
+        <div className="fixed  inset-0 bg-black/70 z-50 flex items-center justify-center px-4">
+          <div className=" bg-zinc-900 text-white rounded-xl p-6 w-full max-w-lg shadow-xl">
+            <h3 className="text-xl font-bold mb-4">✏️ Modifier les réponses</h3>
             {reponsesAModifier.map((r, i) => (
-              <div key={i} className="mb-3">
+              <div key={i} className="mb-4">
                 <input
                   type="text"
                   value={r.texte}
@@ -210,20 +194,32 @@ const ModifierQuiz = () => {
                     updated[i].texte = e.target.value;
                     setReponsesAModifier(updated);
                   }}
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border bg-zinc-800 rounded-2xl"
                 />
-                <label className="ml-2">
+                <label className="ml-2 text-sm">
                   <input
                     type="radio"
                     checked={bonneModifIndex === i}
                     onChange={() => setBonneModifIndex(i)}
-                  /> Bonne réponse
+                    className="mr-1"
+                  />
+                  Bonne réponse
                 </label>
               </div>
             ))}
             <div className="flex justify-end space-x-4 mt-6">
-              <button onClick={() => setIsModalOpen(false)} className="px-4 py-2 bg-gray-300 rounded">Annuler</button>
-              <button onClick={envoyerModifications} className="px-4 py-2 bg-blue-500 text-white rounded">Enregistrer</button>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 rounded-2xl bg-gray-500"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={envoyerModifications}
+                className="px-4 py-2 rounded-2xl bg-secondary text-white hover:bg-primary/80"
+              >
+                Enregistrer
+              </button>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useUser } from "./UserContext";
-
+import ShadowBlue from "./components/ShadowBlue";
 const imageMap = import.meta.glob("/src/assets/*.jpg", { eager: true });
 
 interface Reponse {
@@ -112,7 +112,7 @@ const Quiz = () => {
       ) : !question ? (
         <p>Chargement du quiz...</p>
       ) : (
-        <div className="w-full max-w-xl bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20 relative">
+        <div className="w-full max-w-xl bg-white/5 backdrop-blur rounded-xl p-6 border border-white/60 relative">
           <div className="absolute top-4 right-6 text-sm bg-white/20 px-4 py-1 rounded-full">
             ⏱ {minutes}:{secondes.toString().padStart(2, "0")}
           </div>
@@ -149,6 +149,9 @@ const Quiz = () => {
           </div>
         </div>
       )}
+      <ShadowBlue left="10%" top="20%" leftMd="15%" topMd="10%" leftLg="0%" topLg="15%" />
+      <ShadowBlue left="10%" top="20%" leftMd="15%" topMd="10%" leftLg="80%" topLg="45%" />
+     
     </div>
   );
 };

@@ -41,6 +41,18 @@
   border-right-color:darkgrey;
   
 }
+.glass-morphism-five{
+  background: rgba(114, 102, 102, 0.068);
+  border-radius: 10px;
+  border:1px solid;
+  border-top-color:darkgrey;
+  box-shadow: 0 4px 20px rgb(54, 54, 54);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-right-color:darkgrey;
+  
+}
+
 
 body, button, a {
   cursor: none; 
