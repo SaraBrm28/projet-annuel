@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './components/Button';
-import { BorderBeam } from './components/magicui/border-beam'; // adapte le chemin si besoin
+import { BorderBeam } from './components/magicui/border-beam'; 
 import ShadowBlue from './components/ShadowBlue';
 
 interface Commentaire {
@@ -66,7 +66,7 @@ const MonCompte = () => {
       </h1>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Profil utilisateur */}
+       
         <div className="relative p-6 rounded-xl border glass-morphism-five border-slate-600 bg-black">
           <BorderBeam />
           <h2 className="text-2xl font-semibold mb-4">Mon profil</h2>
@@ -75,7 +75,7 @@ const MonCompte = () => {
           <p><strong>Email :</strong> {email}</p>
         </div>
 
-        {/* Derniers quiz joués */}
+       
         <div className="relative p-6 rounded-xl border border-slate-700 glass-morphism-five bg-black lg:col-span-2">
           <BorderBeam />
           <h2 className="text-xl font-semibold mb-4">Derniers quiz joués</h2>
@@ -93,21 +93,21 @@ const MonCompte = () => {
           )}
         </div>
 
-        {/* Classement */}
+       
         <div className="relative p-6 rounded-xl border glass-morphism-five border-slate-700 bg-black">
           <BorderBeam />
           <h2 className="text-xl font-semibold mb-4">Mon Classement</h2>
           <p className="text-gray-600">📜 En cours de développement...</p>
         </div>
 
-        {/* Quiz favoris */}
+       
         <div className="relative p-6 rounded-xl border glass-morphism-five border-slate-700 bg-black">
           <BorderBeam />
           <h2 className="text-xl font-semibold mb-4">Quiz favoris</h2>
           <p className="text-gray-600">🌟 Tu pourras bientôt retrouver tes quiz préférés ici.</p>
         </div>
 
-        {/* Mes commentaires */}
+       
         <div className="relative p-6 rounded-xl border glass-morphism-five border-slate-700 bg-black lg:col-span-2">
           <BorderBeam />
           <h2 className="text-xl font-semibold mb-4">Mes commentaires</h2>
@@ -127,7 +127,7 @@ const MonCompte = () => {
           )}
         </div>
 
-        {/* Panel admin */}
+       
         {role === 'admin' && (
           <div className="relative p-6 rounded-xl border border-slate-700 bg-black lg:col-span-2">
             <BorderBeam />
@@ -143,7 +143,7 @@ const MonCompte = () => {
         )}
          <ShadowBlue left="10%" top="20%" leftMd="15%" topMd="10%" leftLg="80%" topLg="65%" />
      
-        {/* Déconnexion */}
+        
         <div className="lg:col-span-1">
           <div className="relative group w-fit mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-third rounded-full blur opacity-250 group-hover:opacity-100 transition"></div>

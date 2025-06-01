@@ -54,7 +54,7 @@ const Commentaires = ({ id_quiz, id_utilisateur }: { id_quiz: number, id_utilisa
       setTexte("");
       setMessage("✅ Commentaire publié !");
       fetchCommentaires();
-      setTimeout(() => setMessage(""), 3000); // cache le message après 3s
+      setTimeout(() => setMessage(""), 3000); 
     } else {
       alert("❌ Erreur lors de l'ajout : " + data.error);
     }

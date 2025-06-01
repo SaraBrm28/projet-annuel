@@ -17,7 +17,7 @@ const ResetPasswordRequest = () => {
         setMessage("✅ " + data.message);
         setTimeout(() => {
           window.location.href = `/verifier-code?email=${encodeURIComponent(email)}`;
-        }, 1000); // attend 1 seconde avant de rediriger
+        }, 1000); 
       } else {
         setMessage("❌ " + data.error);
       }

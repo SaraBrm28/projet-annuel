@@ -2,7 +2,7 @@ import React from 'react';
 import Logoo from '../assets/logoo.png';
 import Button from './Button';
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../UserContext"; // Assure-toi que le chemin est correct
+import { useUser } from "../UserContext"; 
 
 const Menus = [
   { id: 1, name: "Accueil", link: "/" },
@@ -13,7 +13,7 @@ const Menus = [
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { nomUtilisateur } = useUser(); // Récupéré depuis le contexte
+  const { nomUtilisateur } = useUser(); 
 
   return (
     <div className="bg-black">

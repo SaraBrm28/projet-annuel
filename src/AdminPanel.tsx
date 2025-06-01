@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Neon } from './components/magicui/neon'; // adapte le chemin si besoin
+import { Neon } from './components/magicui/neon'; 
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const AdminPanel = () => {
       </h1>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {/* Carte 1 */}
+       
         <Neon className="h-full">
           <div className="flex flex-col h-full justify-between">
             <div>

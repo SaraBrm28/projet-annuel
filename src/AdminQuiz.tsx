@@ -71,7 +71,7 @@ const AdminQuiz = () => {
       </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Colonne gauche : Quiz */}
+      
         <div className="bg-white/5 backdrop-blur-md p-6 glass-morphism-two rounded-2xl border border-white/20">
           <h2 className="text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white text-center">
             Quiz
@@ -112,7 +112,7 @@ const AdminQuiz = () => {
           </ul>
         </div>
 
-        {/* Colonne droite : Catégories */}
+       
         <div className="bg-white/5 backdrop-blur-md p-6 glass-morphism-two rounded-2xl border border-white/20">
           <h2 className="text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white text-center">
             Catégories

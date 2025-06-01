@@ -5,7 +5,7 @@ interface Commentaire {
   contenu: string;
   auteur: string;
   date: string;
-  cible: string; // quiz ou sujet forum
+  cible: string; 
 }
 
 const AdminCommentaires = () => {
@@ -58,7 +58,7 @@ const AdminCommentaires = () => {
 
   return (
     <div className="pt-28 px-6 text-white flex flex-col md:flex-row gap-6">
-      {/* Commentaires quiz */}
+    
       <div className="w-full md:w-1/2 bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/70">
         <h2 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
           Commentaires des Quiz
@@ -88,7 +88,7 @@ const AdminCommentaires = () => {
       </div>
 
 
-      {/* Commentaires forum */}
+     
       <div className="w-full md:w-1/2 bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/70">
         <h2 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
           Commentaires du Forum

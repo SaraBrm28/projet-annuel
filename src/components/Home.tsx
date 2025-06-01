@@ -55,7 +55,7 @@ const Home = () => {
 
   const renderPopularCard = (quiz: Quiz) => (
     <Neon className="relative h-full w-full cursor-pointer overflow-hidden">
-      {/* Blurred background inside the card content */}
+     
       <div className="absolute inset-0 z-0">
         <img
           src={`src/assets/${quiz.image}`}
@@ -64,7 +64,7 @@ const Home = () => {
         />
       </div>
   
-      {/* Foreground content */}
+    
       <div className="relative z-10 flex flex-col justify-between h-full w-full p-6 text-white bg-black/30 rounded-[inherit]">
         <div>
           <h2 className="text-xl font-bold mb-2">{quiz.titre}</h2>

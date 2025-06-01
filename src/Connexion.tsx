@@ -33,7 +33,7 @@ const Connexion = () => {
         localStorage.setItem("nom_utilisateur", data.nom_utilisateur);
         localStorage.setItem("email", data.email);
         localStorage.setItem("role", data.role);
-        setUser(data.id_utilisateur, data.nom_utilisateur, data.email); // ✅ email ajouté
+        setUser(data.id_utilisateur, data.nom_utilisateur, data.email); 
         navigate('/');
       } else {
         setMessage('❌ ' + (data.error || 'Erreur de connexion'));
