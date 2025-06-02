@@ -15,7 +15,7 @@ import Recherche from "./components/Recherche";
 import "./index.css";
 import { UserProvider } from "./UserContext";
 import Resultat from "./Resultat";
-import Forum from "./forum";
+import Forum from "./Forum";
 import AdminPanel from "./AdminPanel";
 import { Component } from "lucide-react";
 import AdminUtilisateurs from './AdminUtilisateurs';

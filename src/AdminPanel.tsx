@@ -35,7 +35,7 @@ const AdminPanel = () => {
           </div>
         </Neon>
 
-        {/* Carte 2 */}
+        
         <Neon className="h-full">
           <div className="flex flex-col h-full justify-between">
             <div>
@@ -51,7 +51,7 @@ const AdminPanel = () => {
           </div>
         </Neon>
 
-        {/* Carte 3 */}
+        
         <Neon className="h-full">
           <div className="flex flex-col h-full justify-between">
             <div>

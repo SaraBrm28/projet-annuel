@@ -50,7 +50,7 @@ const Quiz = () => {
     fetchQuestions();
   }, [id]);
 
-  // Timer
+ 
   useEffect(() => {
     if (timeLeft === null || score !== null) return;
 
@@ -87,7 +87,7 @@ const Quiz = () => {
     const total = bonnes * 5;
     setScore(total);
 
-    // ✅ enregistrement du score avec utilisateur connecté
+   
     await fetch("http://localhost/quizverse/api/save_score.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
