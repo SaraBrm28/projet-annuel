@@ -20,7 +20,7 @@ interface Question {
 const Quiz = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { idUtilisateur } = useUser(); // ✅ récupération utilisateur connecté
+  const { idUtilisateur } = useUser(); 
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
@@ -28,7 +28,7 @@ const Quiz = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number }>({});
   const [score, setScore] = useState<number | null>(null);
 
-  // Chargement des questions
+  
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
@@ -118,11 +118,11 @@ const Quiz = () => {
           </div>
           <h2 className="text-2xl font-bold mb-4">Question {currentIndex + 1}</h2>
           <div className="flex flex-col md:flex-row gap-6 items-center">
-            <img
-              src={(imageMap[`/src/assets/${question.image}`] as { default: string })?.default}
-              alt="Illustration"
-              className="w-48 h-32 object-cover rounded-lg border border-white/30"
-            />
+          <img
+  src={`http://localhost/quizverse/images/${question.image}`}
+  alt="Illustration"
+  className="w-48 h-32 object-cover rounded-lg border border-white/30"
+/>
             <p className="text-lg text-center md:text-left">{question.enonce}</p>
           </div>
           <div className="mt-6 grid gap-4">

@@ -121,7 +121,7 @@ const Forum = () => {
                   className="w-full p-3 rounded bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
                 />
                 <button
-                  className="mt-2 bg-green-600 px-4 py-2 rounded hover:bg-green-700 transition"
+                  className="mt-2 bg-secondary px-4 py-2 rounded hover:bg-green-700 transition"
                   onClick={() => publierPost(reponseTextes[post.id_post], post.id_post)}
                 >
                   Répondre

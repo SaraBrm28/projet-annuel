@@ -72,7 +72,7 @@ const Categorie = () => {
         <div className="fixed inset-0 z-50  flex items-center justify-center bg-black/50 backdrop-blur">
           <div className="relative w-[700px] h-[500px] rounded-2xl overflow-hidden shadow-xl">
             <img
-              src={`/src/assets/${selectedQuiz.image}`}
+              src={`http://localhost/quizverse/images/${selectedQuiz.image}`}
               alt={selectedQuiz.titre}
               className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
